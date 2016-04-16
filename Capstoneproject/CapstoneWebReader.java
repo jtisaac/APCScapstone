@@ -14,8 +14,10 @@ public class CapstoneWebReader
 
     public static void main(String[] args) throws MalformedURLException, IOException
     {
-        String address = "http://horstmann.com/index.html";
+        String address = "https://www.google.com/?gws_rd=ssl";
         URL pageLocation = new URL(address);
         Scanner in = new Scanner(pageLocation.openStream());
+        String dis = in.next();
+        System.out.println(dis);
     }
 }
