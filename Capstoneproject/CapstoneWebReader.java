@@ -16,19 +16,21 @@ public class CapstoneWebReader
 
     public static void main(String[] args) throws MalformedURLException, IOException
     {
-        String dis = "";
-        String line = null, response;
-        String address = "https://www.data.gov/education/";
+        String bit = "";
+        String line = "";
+        Scanner memberid = new Scanner(System.in);
+        System.out.println("Please input the member id # of the member: " );
+        String id = memberid.next();
+        memberid.close();
+        String address = "http://www.uschess.org/msa/MbrDtlRtgSupp.php?" + id;
         URL pageLocation = new URL(address);
-        Scanner in = new Scanner(pageLocation.openStream());
         HttpURLConnection conn = (HttpURLConnection) pageLocation.openConnection();
-        dis = in.next();
-        System.out.println(dis);
-        BufferedReader rd = new BufferedReader(new InputStreamReader(conn
-                .getInputStream()));
+        conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         while (rd.readLine() != null) {
             line += rd.readLine();
+            bit = rd.readLine();
+            System.out.println(bit);
         }
-        System.out.println(line);
     }
 }

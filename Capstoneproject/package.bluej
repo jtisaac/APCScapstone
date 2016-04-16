@@ -1,19 +1,19 @@
 #BlueJ package file
 objectbench.height=76
-objectbench.width=658
+objectbench.width=668
 package.editor.height=400
 package.editor.width=560
-package.editor.x=163
-package.editor.y=227
+package.editor.x=368
+package.editor.y=218
 package.numDependencies=0
 package.numTargets=1
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
-target1.editor.height=700
-target1.editor.width=900
-target1.editor.x=573
-target1.editor.y=173
+target1.editor.height=798
+target1.editor.width=1337
+target1.editor.x=294
+target1.editor.y=153
 target1.height=50
 target1.name=CapstoneWebReader
 target1.naviview.expanded=true
