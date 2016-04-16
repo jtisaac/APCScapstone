@@ -11,3 +11,6 @@ DEPENDENCIES:
 HOW TO START THIS PROJECT:
 AUTHORS:
 USER INSTRUCTIONS:
+Pie chart: http://www.vogella.com/tutorials/JFreeChart/article.html#piechart
+Line chart: http://www.tutorialspoint.com/jfreechart/jfreechart_line_chart.htm
+These examples were invaluable to understand the otherwise paid documented jfree class.
