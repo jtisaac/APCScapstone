@@ -12,7 +12,7 @@ import java.util.Date;
 public class CapstoneFileReader
 {
 
-    private static String memberID;
+    private static String amemberID;
     ArrayList<String> names;
     ArrayList<Double> ratings;
     ArrayList<Date> days;
@@ -22,7 +22,7 @@ public class CapstoneFileReader
     public CapstoneFileReader()
     {
         // initialise instance variables
-        //memberID = CapstoneWebpageReader.getMemberID();
+        amemberID = CapstoneWebpageReader.getMemberID();
         names = new ArrayList<String>();
         ratings = new ArrayList<Double>();
         days = new ArrayList<Date>();
@@ -31,7 +31,7 @@ public class CapstoneFileReader
     public static void parse() throws FileNotFoundException
     {
         int memberAmount = 0;
-
+        amemberID = CapstoneWebpageReader.getMemberID();
         Scanner in = new Scanner("memberData.txt");
         in.useDelimiter("/n");
         while (in.hasNext())
@@ -59,7 +59,7 @@ public class CapstoneFileReader
     public static void main() throws IOException
     {
         CapstoneWebpageReader.main();
-        //System.out.println(memberID);
+        System.out.println(amemberID);
         parse();
     }
 }

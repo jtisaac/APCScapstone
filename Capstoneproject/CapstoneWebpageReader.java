@@ -107,6 +107,7 @@ public class CapstoneWebpageReader
     {
         CapstoneWebpageReader.read();
         CapstoneWebpageReader.write();
+        System.out.println(getMemberID());
     }
 }
 
