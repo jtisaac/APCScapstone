@@ -1,5 +1,16 @@
 #BlueJ class context
-comment0.params=args
-comment0.target=void\ main(java.lang.String[])
-comment0.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
-numComments=1
+comment0.params=
+comment0.target=CapstoneWebpageReader()
+comment1.params=
+comment1.target=java.lang.String\ read()
+comment1.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
+comment2.params=
+comment2.target=void\ write()
+comment2.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
+comment3.params=
+comment3.target=java.lang.String\ getMemberID()
+comment3.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
+comment4.params=
+comment4.target=void\ main()
+comment4.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
+numComments=5

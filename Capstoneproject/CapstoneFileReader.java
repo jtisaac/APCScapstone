@@ -1,22 +1,53 @@
-
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Date;
 /**
  * This class reads data from the member's file and creates arrays based on this data.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Joseph Isaac) 
+ * @version (4/17/16)
  */
 public class CapstoneFileReader
 {
-    // instance variables - replace the example below with your own
-    private int x;
 
+    private static String memberID;
+    ArrayList<String> names;
+    ArrayList<Double> ratings;
+    ArrayList<Date> days;
     /**
      * Constructor for objects of class CapstoneFileReader
      */
     public CapstoneFileReader()
     {
         // initialise instance variables
-        x = 0;
+        //memberID = CapstoneWebpageReader.getMemberID();
+        names = new ArrayList<String>();
+        ratings = new ArrayList<Double>();
+        days = new ArrayList<Date>();
+    }
+
+    public static void parse() throws FileNotFoundException
+    {
+        int memberAmount = 0;
+
+        Scanner in = new Scanner("memberData.txt");
+        in.useDelimiter("/n");
+        while (in.hasNext())
+        {
+            memberAmount ++;
+            in.next();
+        }
+        System.out.println(memberAmount);
+        
+        
+    }
+
+    public static void fetchName()
+    {
+        Scanner in = new Scanner("memberData.txt");
+        in.useDelimiter("=>");
     }
 
     /**
@@ -25,9 +56,10 @@ public class CapstoneFileReader
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public int sampleMethod(int y)
+    public static void main() throws IOException
     {
-        // put your code here
-        return x + y;
+        CapstoneWebpageReader.main();
+        //System.out.println(memberID);
+        parse();
     }
 }

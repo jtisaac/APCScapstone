@@ -18,21 +18,27 @@ import java.io.BufferedReader;
  */
 public class CapstoneWebpageReader
 {
+    private static String memberDataString;
+    private static String memberDataFileString;
+    public static String memberID;
+    public CapstoneWebpageReader()
+    {
+        memberDataString = "";
+        memberDataFileString  ="";
+        memberID = "";
+    }
     /**
      * This method Accepts a USCF member id and prints the data page for that member.
      * 
      * 
      */
-    public static void main(String[] args) throws IOException, HttpStatusException
+    public static String read() throws IOException
     {
         Document memberData = null;
-        String memberDataString = null;
-        String memberDataFileString = "";
-        String line = null;
         Scanner memberIDScanner = new Scanner(System.in);
-
+        
         System.out.println("Please enter the member ID of the player: ");
-        String memberID = memberIDScanner.next();
+        memberID = memberIDScanner.next();
         String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID; // datapage for specific member
 
         Connection connection = Jsoup.connect(memberURL).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10000); // this is the workaround needed to access the webpage without getting an HTTPerrorfetchingURL
@@ -42,7 +48,20 @@ public class CapstoneWebpageReader
         }
 
         memberDataString = memberData.text();
-
+        
+        System.out.println(memberDataString);
+        return memberID;
+    }
+    /**
+     * This method Accepts a USCF member id and prints the data page for that member.
+     * 
+     * 
+     */
+    public static void write() throws IOException
+    {
+        String line = "";
+        Scanner memberIDScanner = new Scanner(System.in);
+        
         try
         {
             //File memberDataFile = new File("memberData.txt");
@@ -58,101 +77,36 @@ public class CapstoneWebpageReader
             {
                 memberDataFileString += line;
             }
+            
             System.out.println(memberDataFileString);
 
             //Scanner in = new Scanner(memberDataFile);
             //in.useDelimiter("=>");
-
-            //             while (in.hasNext())
-            //             {
-            //                 //charcount ++;
-            //                 in.next();
-            //             }
-            //System.out.println();
         }
         catch(FileNotFoundException e)
         {
             System.out.println(e.getMessage());
+            File memberDataFile = new File("memberData.txt");
         }
-        //         /**
-        //          * Write a description of class thingreadedr here.
-        //          * 
-        //          * @author (your name) 
-        //          * @version (a version number or a date)
-        //          */
-        //         public class reader
-        //         {
-        //             /** description of instance variable x (add comment for each instance variable) */
-        //             private static int charcount;
-        //             private static int wordcount;
-        //             private static int linecount;
-        // 
-        //             /**
-        //              * Default constructor for objects of class thingreadedr
-        //              */
-        //             public reader()
-        //             {
-        //                 // initialise instance variables
-        //                 charcount = 0;
-        //             }
-        // 
-        //             public static void main(String[] args)
-        //             {
-        //                 try
-        //                 {
-        //                     File inputFile = new File("words.txt");
-        // 
-        //                     Scanner in = new Scanner(inputFile);
-        //                     in.useDelimiter("");
-        // 
-        //                     while (in.hasNext())
-        //                     {
-        //                         charcount ++;
-        //                         in.next();
-        //                     }
-        //                     //System.out.println();
-        //                 }
-        //                 catch(FileNotFoundException e)
-        //                 {
-        //                     System.out.println(e.getMessage());
-        //                 }
-        //                 try
-        //                 {
-        //                     File inputFile = new File("words.txt");
-        // 
-        //                     Scanner inz = new Scanner(inputFile);
-        //                     inz.useDelimiter(" ");
-        // 
-        //                     while (inz.hasNext())
-        //                     {
-        //                         wordcount ++;
-        //                         inz.next();
-        //                     }
-        //                     //System.out.println();
-        //                 }
-        //                 catch(FileNotFoundException e)
-        //                 {
-        //                     System.out.println(e.getMessage());
-        //                 }
-        //                 try
-        //                 {
-        //                     File inputFile = new File("words.txt");
-        // 
-        //                     Scanner inq = new Scanner(inputFile);
-        //                     inq.useDelimiter("\n");
-        // 
-        //                     while (inq.hasNext())
-        //                     {
-        //                         linecount ++;
-        //                         inq.next();
-        //                     }
-        //                     //System.out.println();
-        //                 }
-        //                 catch(FileNotFoundException e)
-        //                 {
-        //                     System.out.println(e.getMessage());
-        //                 }
-        //                 System.out.println("The # of characters is: " + charcount + "\n"  + "The # of words is: " + wordcount + "\n" + "The # of lines is: " + linecount );
+    }
+    /**
+     * This method Accepts a USCF member id and prints the data page for that member.
+     * 
+     * 
+     */
+    public static String getMemberID()
+    {
+        return memberID;
+    }
+    /**
+     * This method Accepts a USCF member id and prints the data page for that member.
+     * 
+     * 
+     */
+    public static void main() throws IOException
+    {
+        CapstoneWebpageReader.read();
+        CapstoneWebpageReader.write();
     }
 }
 
