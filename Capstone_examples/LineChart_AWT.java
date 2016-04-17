@@ -26,6 +26,7 @@ public class LineChart_AWT extends ApplicationFrame
    private DefaultCategoryDataset createDataset( )
    {
       DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
+      //for (int i = 0, i < 
       dataset.addValue( 15 , "schools" , "1970" );
       dataset.addValue( 30 , "schools" , "1980" );
       dataset.addValue( 60 , "schools" ,  "1990" );
@@ -33,6 +34,7 @@ public class LineChart_AWT extends ApplicationFrame
       dataset.addValue( 240 , "schools" , "2010" );
       dataset.addValue( 300 , "schools" , "2014" );
       dataset.addValue( 2000, "Joseph Isaac" , "2016" );
+      dataset.addValue( 560, "Joseph Isaac" , "2018" );
       return dataset;
    }
    public static void main( String[ ] args ) 
