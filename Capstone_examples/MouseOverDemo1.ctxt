@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=title
+comment0.target=MouseOverDemo1(java.lang.String)
+comment0.text=\n\ Creates\ a\ new\ demo\ instance.\n\n\ @param\ title\ \ the\ frame\ title.\n
+comment1.params=
+comment1.target=org.jfree.data.category.CategoryDataset\ createDataset()
+comment1.text=\n\ Returns\ a\ sample\ dataset.\n\ \n\ @return\ The\ dataset.\n
+comment2.params=dataset
+comment2.target=org.jfree.chart.JFreeChart\ createChart(org.jfree.data.category.CategoryDataset)
+comment2.text=\n\ Creates\ a\ sample\ chart.\n\ \n\ @param\ dataset\ \ the\ dataset.\n\ \n\ @return\ The\ chart.\n
+comment3.params=
+comment3.target=javax.swing.JPanel\ createDemoPanel()
+comment3.text=\n\ Creates\ a\ panel\ for\ the\ demo\ (used\ by\ SuperDemo.java).\n\ \n\ @return\ A\ panel.\n
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment4.text=\n\ Starting\ point\ for\ the\ demonstration\ application.\n\n\ @param\ args\ \ ignored.\n
+numComments=5
