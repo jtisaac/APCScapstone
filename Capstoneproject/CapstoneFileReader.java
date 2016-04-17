@@ -22,16 +22,22 @@ public class CapstoneFileReader
     public CapstoneFileReader()
     {
         // initialise instance variables
-        amemberID = CapstoneWebpageReader.getMemberID();
+        
         names = new ArrayList<String>();
         ratings = new ArrayList<Double>();
         days = new ArrayList<Date>();
     }
 
-    public static void parse() throws FileNotFoundException
+    public static void parse() throws FileNotFoundException, IOException
     {
+        CapstoneWebpageReader wr = new CapstoneWebpageReader();
+        wr.main();
+        String memberID = wr.getMemberID();
+        String memberData = wr.getMemberDataString();
+        String name = wr.fetchName();
+        
+        
         int memberAmount = 0;
-        amemberID = CapstoneWebpageReader.getMemberID();
         Scanner in = new Scanner("memberData.txt");
         in.useDelimiter("/n");
         while (in.hasNext())
@@ -39,16 +45,13 @@ public class CapstoneFileReader
             memberAmount ++;
             in.next();
         }
+        
         System.out.println(memberAmount);
         
         
     }
 
-    public static void fetchName()
-    {
-        Scanner in = new Scanner("memberData.txt");
-        in.useDelimiter("=>");
-    }
+
 
     /**
      * An example of a method - replace this comment with your own
@@ -58,8 +61,9 @@ public class CapstoneFileReader
      */
     public static void main() throws IOException
     {
-        CapstoneWebpageReader.main();
-        System.out.println(amemberID);
+        
+        
+        
         parse();
     }
 }

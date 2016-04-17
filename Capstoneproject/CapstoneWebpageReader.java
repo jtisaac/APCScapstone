@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.util.regex.Pattern;
 /**
  * This class reads data from a webpage, specifically USchess.org, then writes this information to a file.
  * IMPORTANT  -use reader class from unit 8. HELPFUL
@@ -18,25 +19,26 @@ import java.io.BufferedReader;
  */
 public class CapstoneWebpageReader
 {
-    private static String memberDataString;
-    private static String memberDataFileString;
-    public static String memberID;
+    private String memberDataString;
+    private String memberDataFileString;
+    private String memberID;
     public CapstoneWebpageReader()
     {
         memberDataString = "";
         memberDataFileString  ="";
         memberID = "";
     }
+
     /**
      * This method Accepts a USCF member id and prints the data page for that member.
      * 
      * 
      */
-    public static String read() throws IOException
+    public String read() throws IOException
     {
         Document memberData = null;
         Scanner memberIDScanner = new Scanner(System.in);
-        
+
         System.out.println("Please enter the member ID of the player: ");
         memberID = memberIDScanner.next();
         String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID; // datapage for specific member
@@ -48,66 +50,83 @@ public class CapstoneWebpageReader
         }
 
         memberDataString = memberData.text();
-        
+
         System.out.println(memberDataString);
         return memberID;
     }
+
     /**
      * This method Accepts a USCF member id and prints the data page for that member.
      * 
      * 
      */
-    public static void write() throws IOException
+    public void write() throws IOException
     {
         String line = "";
         Scanner memberIDScanner = new Scanner(System.in);
-        
+
         try
         {
-            //File memberDataFile = new File("memberData.txt");
-            
-            FileWriter writer = new FileWriter("memberData.txt");
+            FileWriter writer = new FileWriter("memberData" + memberID + ".txt");
             writer.write(memberDataString);
             writer.close();
 
-            FileReader fileReader = new FileReader("memberData.txt");
+            FileReader fileReader = new FileReader("memberData" + memberID + ".txt");
             BufferedReader fileReaderReader = new BufferedReader(fileReader);
 
             while ((line = fileReaderReader.readLine()) != null)
             {
                 memberDataFileString += line;
             }
-            
-            System.out.println(memberDataFileString);
 
-            //Scanner in = new Scanner(memberDataFile);
-            //in.useDelimiter("=>");
+            System.out.println(memberDataFileString);
         }
         catch(FileNotFoundException e)
         {
             System.out.println(e.getMessage());
-            File memberDataFile = new File("memberData.txt");
+            File memberDataFile = new File("memberData" + memberID + ".txt");
         }
     }
+
     /**
-     * This method Accepts a USCF member id and prints the data page for that member.
+     * Accessor method that returns the member's id.
      * 
      * 
      */
-    public static String getMemberID()
+    public String getMemberID()
     {
-        return memberID;
+        return this.memberID;
     }
+
+     /**
+     * Accessor method that returns the member's data string.
+     * 
+     * 
+     */
+    public String getMemberDataString()
+    {
+        return this.memberDataString;
+    }
+    
+    /**
+     * Method that fetches the name of the member.
+     */
+    public String fetchName()
+    {
+        return memberDataFileString.split("Help . " + memberID + ": " , 2)[1].split(" Events",2)[0];
+    }
+    
     /**
      * This method Accepts a USCF member id and prints the data page for that member.
      * 
      * 
      */
-    public static void main() throws IOException
+    public void main() throws IOException
     {
-        CapstoneWebpageReader.read();
-        CapstoneWebpageReader.write();
+        this.read();
+        this.write();
         System.out.println(getMemberID());
+        System.out.println(this.fetchName());
     }
 }
 
