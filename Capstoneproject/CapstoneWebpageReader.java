@@ -125,8 +125,8 @@ public class CapstoneWebpageReader
     {
         this.read();
         this.write();
-        System.out.println(getMemberID());
-        System.out.println(this.fetchName());
+        System.out.println( "This member's ID is: " + getMemberID());
+        System.out.println("The name of the member is: " + this.fetchName());
     }
 }
 

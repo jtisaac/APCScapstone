@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
+import java.util.Arrays;
 /**
  * This class reads data from the member's file and creates arrays based on this data.
  * 
@@ -22,7 +24,7 @@ public class CapstoneFileReader
     public CapstoneFileReader()
     {
         // initialise instance variables
-        
+
         names = new ArrayList<String>();
         ratings = new ArrayList<Double>();
         days = new ArrayList<Date>();
@@ -35,8 +37,28 @@ public class CapstoneFileReader
         String memberID = wr.getMemberID();
         String memberData = wr.getMemberDataString();
         String name = wr.fetchName();
+        ArrayList<String> dateString = new ArrayList<String>();
         
-        
+        String[] dates = memberData.split(" ");
+        for (int x = 0; x < dates.length; x++)
+        {
+            dates[x] = dates[x].split("   ")[0];
+            if ( !((dates[x].contains("-")) && (dates[x].contains("20") || dates[x].contains("19"))) || dates[x].contains("Page") || dates[x].contains("2002-2005") )
+            {
+                //System.out.println(dates[x]);
+                //System.out.println(x);
+                dates[x] = null;
+            }
+            for (String date: dates)
+            {
+                if (date != null)
+                {
+                    dateString.add(date);
+                    System.out.println(date);
+                }
+            }
+        }
+
         int memberAmount = 0;
         Scanner in = new Scanner("memberData.txt");
         in.useDelimiter("/n");
@@ -45,13 +67,10 @@ public class CapstoneFileReader
             memberAmount ++;
             in.next();
         }
-        
-        System.out.println(memberAmount);
-        
-        
+
+        System.out.println("The # of members analyzed is: " + memberAmount);
+
     }
-
-
 
     /**
      * An example of a method - replace this comment with your own
@@ -61,8 +80,7 @@ public class CapstoneFileReader
      */
     public static void main() throws IOException
     {
-        
-        
+
         
         parse();
     }
