@@ -39,7 +39,7 @@ public class CapstoneWebpageReader
         Document memberData = null;
         Scanner memberIDScanner = new Scanner(System.in);
 
-        System.out.println("Please enter the member ID of the player: ");
+        System.out.print("Please enter the member ID of the player: ");
         memberID = memberIDScanner.next();
         String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID; // datapage for specific member
 
