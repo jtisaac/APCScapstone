@@ -22,11 +22,11 @@ public class CapstoneWebpageReader
     private String memberDataString;
     private String memberDataFileString;
     private String memberID;
-    public CapstoneWebpageReader()
+    public CapstoneWebpageReader(String memberID)
     {
         memberDataString = "";
         memberDataFileString  ="";
-        memberID = "";
+        memberID = memberID;
     }
 
     /**
@@ -34,16 +34,16 @@ public class CapstoneWebpageReader
      * 
      * 
      */
-    public String read() throws IOException
+    public void read() throws IOException
     {
         Document memberData = null;
-        Scanner memberIDScanner = new Scanner(System.in);
-
-        System.out.print("Please enter the member ID of the player: ");
-        memberID = memberIDScanner.next();
+        //         Scanner memberIDScanner = new Scanner(System.in);
+        // 
+        //         System.out.print("Please enter the member ID of the player: ");
+        //         memberID = memberIDScanner.next();
         String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID; // datapage for specific member
 
-        Connection connection = Jsoup.connect(memberURL).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10000); // this is the workaround needed to access the webpage without getting an HTTPerrorfetchingURL
+        Connection connection = Jsoup.connect(memberURL).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10000); // this is the workaround needed to access the webpage without getting an HTTPerrorfetchingURL, gotten from StackOverflow
         Connection.Response response = connection.execute();
         if (response.statusCode() == 200) {
             memberData = connection.get();
@@ -51,14 +51,12 @@ public class CapstoneWebpageReader
 
         memberDataString = memberData.text();
 
-        System.out.println(memberDataString);
-        return memberID;
+        //System.out.println(memberDataString);
+        //return memberID;
     }
 
     /**
      * This method Accepts a USCF member id and prints the data page for that member.
-     * 
-     * 
      */
     public void write() throws IOException
     {
@@ -74,12 +72,12 @@ public class CapstoneWebpageReader
             FileReader fileReader = new FileReader("memberData" + memberID + ".txt");
             BufferedReader fileReaderReader = new BufferedReader(fileReader);
 
-            while ((line = fileReaderReader.readLine()) != null)
-            {
-                memberDataFileString += line;
-            }
+            //while ((line = fileReaderReader.readLine()) != null)
+            //{
+            //    memberDataFileString += line;
+            //}
 
-            System.out.println(memberDataFileString);
+            //System.out.println(memberDataFileString);
         }
         catch(FileNotFoundException e)
         {
@@ -98,7 +96,7 @@ public class CapstoneWebpageReader
         return this.memberID;
     }
 
-     /**
+    /**
      * Accessor method that returns the member's data string.
      * 
      * 
@@ -107,7 +105,7 @@ public class CapstoneWebpageReader
     {
         return this.memberDataString;
     }
-    
+
     /**
      * Method that fetches the name of the member.
      */
@@ -115,7 +113,7 @@ public class CapstoneWebpageReader
     {
         return memberDataFileString.split("Help . " + memberID + ": " , 2)[1].split(" Events",2)[0];
     }
-    
+
     /**
      * This method Accepts a USCF member id and prints the data page for that member.
      * 

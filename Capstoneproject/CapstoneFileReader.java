@@ -5,6 +5,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Pattern;
 import java.util.Arrays;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import java.io.IOException;
+import org.jsoup.HttpStatusException;
+import org.jsoup.Connection;
+import java.util.Scanner;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.regex.Pattern;
 /**
  * This class reads data from the member's file and creates arrays based on this data.
  * 
@@ -14,32 +28,56 @@ import java.util.Arrays;
 public class CapstoneFileReader
 {
 
-    private static String amemberID;
-    ArrayList<String> names;
-    ArrayList<Double> ratings;
-    ArrayList<Date> days;
+    private static String memberID;
+    private ArrayList<String> names;
+    private ArrayList<Double> ratings;
+    private ArrayList<Date> days;
+    private ArrayList<String> data;
+    private String memberdata;
     /**
      * Constructor for objects of class CapstoneFileReader
      */
-    public CapstoneFileReader()
+    public CapstoneFileReader(String memberdata)
     {
         // initialise instance variables
 
         names = new ArrayList<String>();
         ratings = new ArrayList<Double>();
         days = new ArrayList<Date>();
+        memberdata = memberdata;
     }
 
     public static void parse() throws FileNotFoundException, IOException
     {
-        CapstoneWebpageReader wr = new CapstoneWebpageReader();
-        wr.main();
-        String memberID = wr.getMemberID();
-        String memberData = wr.getMemberDataString();
-        String name = wr.fetchName();
-        ArrayList<String> dateString = new ArrayList<String>();
-        
-        String[] dates = memberData.split(" ");
+        //         Scanner memberIDScanner = new Scanner(System.in);
+        // 
+        //         System.out.print("Please enter the member ID of the player: ");
+        //         memberID = memberIDScanner.next();
+        // 
+        //         try
+        //         {
+        //             FileWriter writer = new FileWriter("memberData" + memberID + ".txt");
+        // 
+        //             FileReader fileReader = new FileReader("memberData" + memberID + ".txt");
+        //             BufferedReader fileReaderReader = new BufferedReader(fileReader);
+        // 
+        //             while ((line = fileReaderReader.readLine()) != null)
+        //             {
+        //                 memberDataFileString += line;
+        //             }
+        // 
+        //             System.out.println(memberDataFileString);
+        //         }
+        //         catch(FileNotFoundException e)
+        //         {
+        //             System.out.println(e.getMessage());
+        //             File memberDataFile = new File("memberData" + memberID + ".txt");
+        //         }
+
+       
+        //ArrayList<String> dateString = new ArrayList<String>();
+
+        //String[] dates = memberData.split(" ");
         for (int x = 0; x < dates.length; x++)
         {
             dates[x] = dates[x].split("   ")[0];
@@ -80,8 +118,11 @@ public class CapstoneFileReader
      */
     public static void main() throws IOException
     {
-
-        
+        CapstoneWebpageReader wr = new CapstoneWebpageReader();
+        wr.main();
+        String memberID = wr.getMemberID();
+        String memberdata = wr.getMemberDataString();
+        String name = wr.fetchName();
         parse();
     }
 }

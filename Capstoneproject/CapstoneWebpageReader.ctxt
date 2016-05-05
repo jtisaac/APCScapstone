@@ -1,12 +1,12 @@
 #BlueJ class context
-comment0.params=
-comment0.target=CapstoneWebpageReader()
+comment0.params=memberID
+comment0.target=CapstoneWebpageReader(java.lang.String)
 comment1.params=
-comment1.target=java.lang.String\ read()
+comment1.target=void\ read()
 comment1.text=\r\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\r\n\ \r\n\ \r\n
 comment2.params=
 comment2.target=void\ write()
-comment2.text=\r\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\r\n\ \r\n\ \r\n
+comment2.text=\r\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\r\n
 comment3.params=
 comment3.target=java.lang.String\ getMemberID()
 comment3.text=\r\n\ Accessor\ method\ that\ returns\ the\ member's\ id.\r\n\ \r\n\ \r\n
