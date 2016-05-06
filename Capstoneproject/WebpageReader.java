@@ -17,16 +17,14 @@ import java.util.regex.Pattern;
  * @author (Joseph Isaac) 
  * @version (4/16/16)
  */
-public class CapstoneWebpageReader
+public class WebpageReader
 {
     private String memberDataString;
-    private String memberDataFileString;
     private String memberID;
-    public CapstoneWebpageReader(String memberID)
+    public WebpageReader(String ID)
     {
         memberDataString = "";
-        memberDataFileString  ="";
-        memberID = memberID;
+        this.memberID = ID;
     }
 
     /**
@@ -34,7 +32,7 @@ public class CapstoneWebpageReader
      * 
      * 
      */
-    public void read() throws IOException
+    public String read() throws IOException
     {
         Document memberData = null;
         //         Scanner memberIDScanner = new Scanner(System.in);
@@ -50,9 +48,7 @@ public class CapstoneWebpageReader
         }
 
         memberDataString = memberData.text();
-
-        //System.out.println(memberDataString);
-        //return memberID;
+        return memberDataString;
     }
 
     /**
@@ -60,24 +56,11 @@ public class CapstoneWebpageReader
      */
     public void write() throws IOException
     {
-        String line = "";
-        Scanner memberIDScanner = new Scanner(System.in);
-
         try
         {
             FileWriter writer = new FileWriter("memberData" + memberID + ".txt");
             writer.write(memberDataString);
             writer.close();
-
-            FileReader fileReader = new FileReader("memberData" + memberID + ".txt");
-            BufferedReader fileReaderReader = new BufferedReader(fileReader);
-
-            //while ((line = fileReaderReader.readLine()) != null)
-            //{
-            //    memberDataFileString += line;
-            //}
-
-            //System.out.println(memberDataFileString);
         }
         catch(FileNotFoundException e)
         {
@@ -111,7 +94,7 @@ public class CapstoneWebpageReader
      */
     public String fetchName()
     {
-        return memberDataFileString.split("Help . " + memberID + ": " , 2)[1].split(" Events",2)[0];
+        return memberDataString.split("Help . " + memberID + ": ")[1].split(" Events")[0];
     }
 
     /**
@@ -119,12 +102,14 @@ public class CapstoneWebpageReader
      * 
      * 
      */
-    public void main() throws IOException
+    public String main() throws IOException
     {
-        this.read();
+        String data = this.read();
         this.write();
         System.out.println( "This member's ID is: " + getMemberID());
         System.out.println("The name of the member is: " + this.fetchName());
+        System.out.println(data);
+        return data;        
     }
 }
 

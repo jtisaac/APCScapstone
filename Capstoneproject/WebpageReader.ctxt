@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=ID
+comment0.target=WebpageReader(java.lang.String)
+comment1.params=
+comment1.target=java.lang.String\ read()
+comment1.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
+comment2.params=
+comment2.target=void\ write()
+comment2.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n
+comment3.params=
+comment3.target=java.lang.String\ getMemberID()
+comment3.text=\n\ Accessor\ method\ that\ returns\ the\ member's\ id.\n\ \n\ \n
+comment4.params=
+comment4.target=java.lang.String\ getMemberDataString()
+comment4.text=\n\ Accessor\ method\ that\ returns\ the\ member's\ data\ string.\n\ \n\ \n
+comment5.params=
+comment5.target=java.lang.String\ fetchName()
+comment5.text=\n\ Method\ that\ fetches\ the\ name\ of\ the\ member.\n
+comment6.params=
+comment6.target=java.lang.String\ main()
+comment6.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ \n
+numComments=7
