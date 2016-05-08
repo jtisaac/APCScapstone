@@ -130,6 +130,36 @@ public class Parser
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
+    public ArrayList<Integer> getRatings() throws IOException
+    {
+        return ratings;
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     * 
+     * @param  y   a sample parameter for a method
+     * @return     the sum of x and y 
+     */
+    public ArrayList<GregorianCalendar> getDates() throws IOException
+    {
+        return date;
+    }
+    
+    /**
+     * Method that fetches the name of the member.
+     */
+    public String fetchName()
+    {
+        return memberdata.split(memberID + ": ")[1].split(" Events")[0];
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     * 
+     * @param  y   a sample parameter for a method
+     * @return     the sum of x and y 
+     */
     public void main() throws IOException
     {
         this.parse();
