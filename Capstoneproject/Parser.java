@@ -109,9 +109,9 @@ public class Parser
                 {
                     for (int k = y; k < memberStr.size(); k ++)
                     {
-                        if (first == 0 && memberStr.get(k-1).compareTo("=>") == 0 && memberStr.get(k-3).compareTo("\t") != 0 && memberStr.get(k-3).compareTo("\t") != 0 && !(memberStr.get(k-3).contains("ONL:")))
+                        if (first == 0 && memberStr.get(k-1).compareTo("=>") == 0 && memberStr.get(k-3).compareTo("\t") != 0 && memberStr.get(k-3).compareTo("\t") != 0 && !(memberStr.get(k-3).contains("ONL:")) && !(memberStr.get(k-2).contains("ONL:")))
                         {
-                            ratings.add(Integer.parseInt(memberStr.get(k).replaceAll("P( . )" , "")));
+                            ratings.add(Integer.parseInt(memberStr.get(k)));
                             first = 1;
                             ratingcount ++;
                         }
