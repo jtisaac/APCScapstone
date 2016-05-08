@@ -19,6 +19,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.regex.Pattern;
+import java.util.GregorianCalendar;
 /**
  * This class reads data from the member's file and creates arrays based on this data.
  * 
@@ -30,8 +31,8 @@ public class Parser
 
     private static String memberID;
     private ArrayList<String> names;
-    private ArrayList<Double> ratings;
-    private ArrayList<Date> date;
+    private ArrayList<Integer> ratings;
+    private ArrayList<GregorianCalendar> date;
     private ArrayList<String> data;
     private ArrayList<String> memberStr;
     private String memberdata;
@@ -43,8 +44,8 @@ public class Parser
         // initialise instance variables
 
         names = new ArrayList<String>();
-        ratings = new ArrayList<Double>();
-        date = new ArrayList<Date>();
+        ratings = new ArrayList<Integer>();
+        date = new ArrayList<GregorianCalendar>();
         memberStr = new ArrayList<String>();
         String[] temp = memberdata.split(" ");
         for (int x= 0; x < temp.length; x++)
@@ -60,18 +61,20 @@ public class Parser
     {
         int[] tempNum = new int[3];
         String[] tempString = new String[3];
-        Date tempDate = new Date();
+        ArrayList<String> cal = new ArrayList<String>();
+        GregorianCalendar tempDate = new GregorianCalendar();
         int year = 0;
         int month = 0;
         int day = 0;
         int count = 0;
 
+        String tempstr = "";
         for (int x = 0; x < memberStr.size(); x++)
         {
-           
-            if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0)//http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen 
+
+            if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 )//http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen 
             {
-                
+
                 tempString = memberStr.get(x).split("-",3);
 
                 for (int y = 0; y < tempString.length; y ++)
@@ -82,17 +85,43 @@ public class Parser
                 year = tempNum[0]; //-1900
                 month = tempNum[1];
                 day = tempNum[2];
-                System.out.println(year + " " + month + " " + day);
+                System.out.print(year + " " + month + " " + day + " ");
                 count ++;
-                
-                tempDate = new Date(year,month,day);
-                
+
+                tempDate = new GregorianCalendar(year,month,day);
+
+                cal.add(memberStr.get(x));
                 date.add(tempDate);
-                System.out.println(tempDate.getYear() + "-" + tempDate.getMonth() + "-" + tempDate.getDay());
-                System.out.println(memberStr.get(x));
+                //System.out.println(tempDate.toString());
+                //System.out.println(memberStr.get(x));
+                System.out.print(count + "XX ");
             }
         }
         System.out.println("This player has played in " + count + " tournaments");
+        
+        int first = 0;
+        int ratingcount = 0;
+        for (int x = 0; x < date.size(); x++)
+        {
+            for (int y = 0; y < memberStr.size(); y++)
+            {
+                if (cal.get(x) == memberStr.get(y))
+                {
+                    for (int k = y; k < memberStr.size(); k ++)
+                    {
+                        if (first == 0 && memberStr.get(k-1).compareTo("=>") == 0 && memberStr.get(k-3).compareTo("\t") != 0 && memberStr.get(k-3).compareTo("\t") != 0 && !(memberStr.get(k-3).contains("ONL:")))
+                        {
+                            ratings.add(Integer.parseInt(memberStr.get(k).replaceAll("P( . )" , "")));
+                            first = 1;
+                            ratingcount ++;
+                        }
+                    }
+                    first = 0;
+                }
+            }
+        }
+        System.out.print(ratings);
+        System.out.print(ratingcount);
     }
 
     /**

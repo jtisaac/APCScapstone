@@ -13,7 +13,7 @@ public class LineChart_AWT extends ApplicationFrame
       super(applicationTitle);
       JFreeChart lineChart = ChartFactory.createLineChart(
          chartTitle,
-         "Years","Number of Schools",
+         "date","rating",
          createDataset(),
          PlotOrientation.VERTICAL,
          true,true,false);
@@ -26,8 +26,10 @@ public class LineChart_AWT extends ApplicationFrame
    private DefaultCategoryDataset createDataset( )
    {
       DefaultCategoryDataset dataset = new DefaultCategoryDataset( );
-      //for (int i = 0, i < 
-      dataset.addValue( 15 , "schools" , "1970" );
+      for (int x = 0; x < ratings.size(); x++)
+      {
+          dataset.addValue( ratings.get(x) , "Joseph Isaac" , "1970" );
+        }
       dataset.addValue( 30 , "schools" , "1980" );
       dataset.addValue( 60 , "schools" ,  "1990" );
       dataset.addValue( 120 , "schools" , "2000" );
