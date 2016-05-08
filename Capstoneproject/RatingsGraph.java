@@ -51,7 +51,7 @@ public class RatingsGraph extends ApplicationFrame
         
         return p;
     }
-    private DefaultCategoryDataset makeDataset() throws IOException
+    public static DefaultCategoryDataset makeDataset() throws IOException
     {
         
         Scanner in = new Scanner(System.in);
@@ -68,6 +68,9 @@ public class RatingsGraph extends ApplicationFrame
         }
         return dataset;
     }
+    
+     
+    
     /**
      * An example of a method - replace this comment with your own
      * 
@@ -81,5 +84,6 @@ public class RatingsGraph extends ApplicationFrame
         graph.pack(); 
         RefineryUtilities.centerFrameOnScreen(graph);
         graph.setVisible(true);
+        makeDataset();
     }
 }

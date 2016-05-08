@@ -48,13 +48,18 @@ public class WebpageReader
     public String read() throws IOException
     {
         Document memberData = null;
-        String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID; // datapage for specific member
-        Connection connection = Jsoup.connect(memberURL).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10000); // this is the workaround needed to access the webpage without getting an HTTPerrorfetchingURL, gotten from StackOverflow
-        Connection.Response response = connection.execute();
-        if (response.statusCode() == 200) {
-            memberData = connection.get();
+        
+        for (int x = 1; x < 20; x++)
+        {
+            String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID + "." + x; // datapage for specific member
+
+            Connection connection = Jsoup.connect(memberURL).userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21").timeout(10000); // this is the workaround needed to access the webpage without getting an HTTPerrorfetchingURL, gotten from StackOverflow
+            Connection.Response response = connection.execute();
+            if (response.statusCode() == 200) {
+                memberData = connection.get();
+            }
+            memberDataString += memberData.text();
         }
-        memberDataString = memberData.text();
         return memberDataString;
     }    
 
@@ -114,9 +119,9 @@ public class WebpageReader
         String data = this.read();
         //System.out.print(memberDataString);
         this.write();
-        System.out.println( "This member's ID is: " + getMemberID());
+        //System.out.println( "This member's ID is: " + getMemberID());
         System.out.println("The name of the member is: " + this.fetchName());
-        System.out.println(data);
+        //System.out.println(data);
         return data;        
     }
 }

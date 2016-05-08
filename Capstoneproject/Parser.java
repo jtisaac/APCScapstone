@@ -53,7 +53,7 @@ public class Parser
             memberStr.add(temp[x]);
 
         }
-        System.out.println(memberdata);
+        //System.out.println(memberdata);
         memberdata = memberdata;
     }
 
@@ -85,7 +85,7 @@ public class Parser
                 year = tempNum[0]; //-1900
                 month = tempNum[1];
                 day = tempNum[2];
-                System.out.print(year + " " + month + " " + day + " ");
+                //System.out.print(year + " " + month + " " + day + " ");
                 count ++;
 
                 tempDate = new GregorianCalendar(year,month,day);
@@ -94,7 +94,7 @@ public class Parser
                 date.add(tempDate);
                 //System.out.println(tempDate.toString());
                 //System.out.println(memberStr.get(x));
-                System.out.print(count + "XX ");
+                //System.out.print(count + "XX ");
             }
         }
         System.out.println("This player has played in " + count + " tournaments");
@@ -120,8 +120,8 @@ public class Parser
                 }
             }
         }
-        System.out.print(ratings);
-        System.out.print(ratingcount);
+        //System.out.print(ratings);
+        //system.out.print(ratingcount);
     }
 
     /**
