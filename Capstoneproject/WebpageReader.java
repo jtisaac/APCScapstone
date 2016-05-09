@@ -120,7 +120,7 @@ public class WebpageReader
         //System.out.print(memberDataString);
         this.write();
         //System.out.println( "This member's ID is: " + getMemberID());
-        System.out.println("The name of the member is: " + this.fetchName());
+        //System.out.println("The name of the member is: " + this.fetchName());
         //System.out.println(data);
         return data;        
     }

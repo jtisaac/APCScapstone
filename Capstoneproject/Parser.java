@@ -36,6 +36,10 @@ public class Parser
     private ArrayList<String> data;
     private ArrayList<String> memberStr;
     private String memberdata;
+
+    private ArrayList<Integer> year;
+    private ArrayList<Integer> month;
+    private ArrayList<Integer> day;
     /**
      * Constructor for objects of class CapstoneFileReader
      */
@@ -46,6 +50,11 @@ public class Parser
         names = new ArrayList<String>();
         ratings = new ArrayList<Integer>();
         date = new ArrayList<GregorianCalendar>();
+
+        year = new ArrayList<Integer>();
+        month = new ArrayList<Integer>();
+        day = new ArrayList<Integer>();
+
         memberStr = new ArrayList<String>();
         String[] temp = memberdata.split(" ");
         for (int x= 0; x < temp.length; x++)
@@ -62,17 +71,25 @@ public class Parser
         int[] tempNum = new int[3];
         String[] tempString = new String[3];
         ArrayList<String> cal = new ArrayList<String>();
-        GregorianCalendar tempDate = new GregorianCalendar();
-        int year = 0;
-        int month = 0;
-        int day = 0;
+        //GregorianCalendar tempDate = new GregorianCalendar();
+        boolean same = false;
         int count = 0;
 
         String tempstr = "";
-        for (int x = 0; x < memberStr.size(); x++)
+        for (int x = memberStr.size() - 1; x >= 0; x--)
         {
-
-            if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 )//http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen 
+            for (String s : cal) 
+            { 
+                if (memberStr.get(x).compareTo(s) == 0)
+                {
+                    same = true;
+                }
+                else
+                {
+                    same = false;
+                }
+            }
+            if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 && same == false)//http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen 
             {
 
                 tempString = memberStr.get(x).split("-",3);
@@ -82,30 +99,31 @@ public class Parser
                     tempNum[y] = Integer.parseInt(tempString[y]); //http://imagejdocu.tudor.lu/doku.php?id=howto:java:how_to_convert_data_type_x_into_type_y_in_java
                 }
 
-                year = tempNum[0]; //-1900
-                month = tempNum[1];
-                day = tempNum[2];
+                year.add(tempNum[0]); //-1900
+                month.add(tempNum[1]);
+                day.add(tempNum[2]);
                 //System.out.print(year + " " + month + " " + day + " ");
                 count ++;
 
-                tempDate = new GregorianCalendar(year,month,day);
+                //tempDate = new GregorianCalendar(year,month,day);
 
                 cal.add(memberStr.get(x));
-                date.add(tempDate);
+                //date.add(tempDate);
                 //System.out.println(tempDate.toString());
                 //System.out.println(memberStr.get(x));
                 //System.out.print(count + "XX ");
             }
         }
+
         System.out.println("This player has played in " + count + " tournaments");
-        
+
         int first = 0;
         int ratingcount = 0;
-        for (int x = 0; x < date.size(); x++)
+        for (int z = 0; z < year.size(); z++)
         {
-            for (int y = 0; y < memberStr.size(); y++)
+            for (int y = memberStr.size() - 1; y >= 0; y--)
             {
-                if (cal.get(x) == memberStr.get(y))
+                if (cal.get(z).compareTo(memberStr.get(y)) == 0)
                 {
                     for (int k = y; k < memberStr.size(); k ++)
                     {
@@ -115,37 +133,54 @@ public class Parser
                             first = 1;
                             ratingcount ++;
                         }
+
                     }
                     first = 0;
                 }
             }
         }
-        //System.out.print(ratings);
-        //system.out.print(ratingcount);
+        System.out.println(ratings);
+        System.out.println(ratingcount);
+
+        /**
+         * An example of a method - replace this comment with your own
+         * 
+         * @param  y   a sample parameter for a method
+         * @return     the sum of x and y 
+         */
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
     public ArrayList<Integer> getRatings() throws IOException
     {
         return ratings;
     }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public ArrayList<GregorianCalendar> getDates() throws IOException
+
+    //     /**
+    //      * An example of a method - replace this comment with your own
+    //      * 
+    //      * @param  y   a sample parameter for a method
+    //      * @return     the sum of x and y 
+    //      */
+    //     public ArrayList<GregorianCalendar> getDates() throws IOException
+    //     {
+    //         return date;
+    //     }
+
+    public ArrayList<Integer> getYear() throws IOException
     {
-        return date;
+        return year;
     }
-    
+
+    public ArrayList<Integer> getMonth() throws IOException
+    {
+        return month;
+    }
+
+    public ArrayList<Integer> getDay() throws IOException
+    {
+        return day;
+    }
+
     /**
      * Method that fetches the name of the member.
      */
@@ -153,7 +188,7 @@ public class Parser
     {
         return memberdata.split(memberID + ": ")[1].split(" Events")[0];
     }
-    
+
     /**
      * An example of a method - replace this comment with your own
      * 

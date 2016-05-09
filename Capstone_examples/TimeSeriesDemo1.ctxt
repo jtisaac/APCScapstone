@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=title
+comment0.target=TimeSeriesDemo1(java.lang.String)
+comment0.text=\n\ A\ demonstration\ application\ showing\ how\ to\ create\ a\ simple\ time\ series\n\ chart.\ \ This\ example\ uses\ monthly\ data.\n\n\ @param\ title\ \ the\ frame\ title.\n
+comment1.params=dataset
+comment1.target=org.jfree.chart.JFreeChart\ createChart(org.jfree.data.xy.XYDataset)
+comment1.text=\n\ Creates\ a\ chart.\n\n\ @param\ dataset\ \ a\ dataset.\n\n\ @return\ A\ chart.\n
+comment2.params=
+comment2.target=org.jfree.data.xy.XYDataset\ createDataset()
+comment2.text=\n\ Creates\ a\ dataset,\ consisting\ of\ two\ series\ of\ monthly\ data.\n\n\ @return\ the\ dataset.\n
+comment3.params=
+comment3.target=javax.swing.JPanel\ createDemoPanel()
+comment3.text=\n\ Creates\ a\ panel\ for\ the\ demo\ (used\ by\ SuperDemo.java).\n\n\ @return\ A\ panel.\n
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment4.text=\n\ Starting\ point\ for\ the\ demonstration\ application.\n\n\ @param\ args\ \ ignored.\n
+numComments=5
