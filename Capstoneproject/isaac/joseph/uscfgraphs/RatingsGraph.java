@@ -1,3 +1,5 @@
+package isaac.joseph.uscfgraphs;
+
 import org.jfree.chart.ChartPanel;/// All this code is from http://www.jfree.org/  - thianks so much to the maker!
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;

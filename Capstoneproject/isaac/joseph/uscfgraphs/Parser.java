@@ -1,3 +1,4 @@
+package isaac.joseph.uscfgraphs;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
