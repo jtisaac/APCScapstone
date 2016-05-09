@@ -56,7 +56,7 @@ public class Parser
         day = new ArrayList<Integer>();
 
         memberStr = new ArrayList<String>();
-        String[] temp = memberdata.split(" ");
+        String[] temp = memberdata.split(" "); //?<="\S"
         for (int x= 0; x < temp.length; x++)
         {
             memberStr.add(temp[x]);
@@ -74,8 +74,9 @@ public class Parser
         //GregorianCalendar tempDate = new GregorianCalendar();
         boolean same = false;
         int count = 0;
-
+        boolean yes = false;
         String tempstr = "";
+        int match = 0;
         for (int x = memberStr.size() - 1; x >= 0; x--)
         {
             for (String s : cal) 
@@ -89,66 +90,102 @@ public class Parser
                     same = false;
                 }
             }
+
+            yes = true;
+            match = 0;
             if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 && same == false)//http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen 
             {
 
-                tempString = memberStr.get(x).split("-",3);
-
-                for (int y = 0; y < tempString.length; y ++)
+                for (int a = x; a < memberStr.size(); a++)
                 {
-                    tempNum[y] = Integer.parseInt(tempString[y]); //http://imagejdocu.tudor.lu/doku.php?id=howto:java:how_to_convert_data_type_x_into_type_y_in_java
+                    if (memberStr.get(a).contains("=>"))
+                    {
+
+                        if (memberStr.get(a-3).contains(" ") || memberStr.get(a-1).contains("ONL:"))
+                        {
+                            yes = false;
+                        }
+                        a = memberStr.size();
+                    }
+
+                    
                 }
+                if (yes == true)
+                {
 
-                year.add(tempNum[0]); //-1900
-                month.add(tempNum[1]);
-                day.add(tempNum[2]);
-                //System.out.print(year + " " + month + " " + day + " ");
-                count ++;
+                    tempString = memberStr.get(x).split("-",3);
 
-                //tempDate = new GregorianCalendar(year,month,day);
+                    for (int y = 0; y < tempString.length; y ++)
+                    {
+                        tempNum[y] = Integer.parseInt(tempString[y]); //http://imagejdocu.tudor.lu/doku.php?id=howto:java:how_to_convert_data_type_x_into_type_y_in_java
+                    }
 
-                cal.add(memberStr.get(x));
-                //date.add(tempDate);
-                //System.out.println(tempDate.toString());
-                //System.out.println(memberStr.get(x));
-                //System.out.print(count + "XX ");
+                    year.add(tempNum[0]); //-1900
+                    month.add(tempNum[1]);
+                    day.add(tempNum[2]);
+                    //System.out.print(year + " " + month + " " + day + " ");
+                    count ++;
+
+                    //tempDate = new GregorianCalendar(year,month,day);
+
+                    cal.add(memberStr.get(x));
+                    //date.add(tempDate);
+                    //System.out.println(tempDate.toString());
+                    //System.out.println(memberStr.get(x));
+                    //System.out.print(count + "XX ");
+                }
             }
+
         }
 
         System.out.println("This player has played in " + count + " tournaments");
-
+        System.out.println(memberStr);
         int first = 0;
         int ratingcount = 0;
+
+        System.out.println(year);
+        System.out.println(year.size());
+
         for (int z = 0; z < year.size(); z++)
         {
+            //System.out.println(z);
             for (int y = memberStr.size() - 1; y >= 0; y--)
             {
+                //System.out.println(y);
                 if (cal.get(z).compareTo(memberStr.get(y)) == 0)
                 {
                     for (int k = y; k < memberStr.size(); k ++)
                     {
-                        if (first == 0 && memberStr.get(k-1).compareTo("=>") == 0 && memberStr.get(k-3).compareTo("\t") != 0 && memberStr.get(k-3).compareTo("\t") != 0 && !(memberStr.get(k-3).contains("ONL:")) && !(memberStr.get(k-2).contains("ONL:")))
+                        if (first == 0 && memberStr.get(k-1).contains("=>") && memberStr.get(k-3).compareTo(" ") != 0 && !(memberStr.get(k-3).contains("ONL:")) && !(memberStr.get(k-2).contains("ONL:")))
                         {
                             ratings.add(Integer.parseInt(memberStr.get(k)));
-                            first = 1;
+                            k = memberStr.size();
+                            y = -1;
                             ratingcount ++;
                         }
-
+                        //                         else if (memberStr.get(k-1).compareTo("=>") == 0 && memberStr.get(k-3).compareTo(" ") == 0 || first == 1)
+                        //                         {
+                        //                             //year.remove(z);
+                        //                             //month.remove(z);
+                        //                             //.remove(z);
+                        //                             System.out.println("Phemerwitz");
+                        //                         }
                     }
-                    first = 0;
+                    
                 }
+
             }
         }
         System.out.println(ratings);
         System.out.println(ratingcount);
-
-        /**
-         * An example of a method - replace this comment with your own
-         * 
-         * @param  y   a sample parameter for a method
-         * @return     the sum of x and y 
-         */
     }
+
+    /**
+     * An example of a method - replace this comment with your own
+     * 
+     * @param  y   a sample parameter for a method
+     * @return     the sum of x and y 
+     */
 
     public ArrayList<Integer> getRatings() throws IOException
     {

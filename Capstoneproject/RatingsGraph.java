@@ -148,7 +148,7 @@ public class RatingsGraph extends ApplicationFrame
             Parser p = new Parser(data);
             p.main();
             TimeSeries dat = new TimeSeries(wr.fetchName());
-            for (int x = p.getYear().size() -1; x >= 0; x--)
+            for (int x = 0; x < p.getYear().size(); x++)
             {
                 dat.add(new Day(p.getDay().get(x), p.getMonth().get(x), p.getYear().get(x)), p.getRatings().get(x));
             }

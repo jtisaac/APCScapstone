@@ -49,7 +49,7 @@ public class WebpageReader
     {
         Document memberData = null;
         
-        for (int x = 1; x < 20; x++)
+        for (int x = 1; x < 5; x++)
         {
             String memberURL = "http://www.uschess.org/msa/MbrDtlTnmtHst.php?" + memberID + "." + x; // datapage for specific member
 
