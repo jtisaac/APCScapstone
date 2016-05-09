@@ -72,6 +72,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.regex.Pattern;
 import java.util.GregorianCalendar;
+import javax.swing.JFrame;
 /** //this WHOLE CLASS is thanks to http://www.jfree.org/ - CUSTOMIZED IT TO MY PURPOSES  - thianks so much to the maker!
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -87,40 +88,50 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class RatingsGraph extends ApplicationFrame
 {
     // instance variables - replace the example below with your own
-    private DefaultCategoryDataset graphdata;
+    //private DefaultCategoryDataset graphdata;
     /**
      * Constructor for objects of class RatingsGraph
      */
     public RatingsGraph(String applicationTitle , String chartTitle) throws IOException
     {
         super(applicationTitle);
+        JPanel panel1 = createPanel(); //new ChartPanel (ratingchart);
+        panel1.setPreferredSize( new java.awt.Dimension( 1400, 1000 ));
+        setContentPane( panel1);
 
+        //JPanel panel2 = createPanel2(); //new ChartPanel (ratingchart);
+        //panel2.setPreferredSize( new java.awt.Dimension( 600, 400 ));
+        //setContentPane( panel2);
         //graphdata = new DefaultCategoryDataset();
 
+        //JFrame frame = new JFrame("graph");
+        //frame.getContentPane().add(new ChartPanel(panel1), BorderLayout.EAST);
+        //frame.getContentPane().add(new ChartPanel(panel2), BorderLayout.WEST);
+
         //JFreeChart ratingchart = ChartFactory.createLineChart( chartTitle , "date" , "rating" , makeDataset() , PlotOrientation.VERTICAL, true , true, false);
-        JPanel panel1 = createPanel1(); //new ChartPanel (ratingchart);
-        panel1.setPreferredSize( new java.awt.Dimension( 600, 400 ));
-        setContentPane( panel1);
-        
-        JPanel panel2 = createPanel2(); //new ChartPanel (ratingchart);
-        panel2.setPreferredSize( new java.awt.Dimension( 600, 400 ));
-        setContentPane( panel2);
 
     }
 
-    public static JPanel createPanel1() throws IOException
+    public static JPanel createPanel() throws IOException
     {
-        JFreeChart chart = createChart(makeDataset()[0]);
+        JFreeChart chart = createChart(makeDataset());
         return new ChartPanel(chart);
     }
 
-    public static JPanel createPanel2() throws IOException
+    //     public static JPanel createPanel1() throws IOException
+    //     {
+    //         JFreeChart chart = createChart(makeDataset()[0]);
+    //         return new ChartPanel(chart);
+    //     }
+    // 
+    //     public static JPanel createPanel2() throws IOException
+    //     {
+    //         JFreeChart chart = createChart(makeDataset()[1]);
+    //         return new ChartPanel(chart);
+    //     }
+
+    private static JFreeChart createChart(XYDataset dataset) 
     {
-        JFreeChart chart = createChart(makeDataset()[1]);
-        return new ChartPanel(chart);
-    }
-    
-    private static JFreeChart createChart(XYDataset dataset) {
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 "USCF Graphs by Joseph Isaac",
                 "Time",
@@ -170,15 +181,16 @@ public class RatingsGraph extends ApplicationFrame
     //         return p;
     //     }
 
-    public static TimeSeriesCollection[] makeDataset() throws IOException
+    public static TimeSeriesCollection makeDataset() throws IOException
     {
         Scanner in = new Scanner(System.in);
         String another = "y";
-        TimeSeriesCollection dataset1 = new TimeSeriesCollection();
-        TimeSeriesCollection dataset2 = new TimeSeriesCollection();
-        TimeSeriesCollection[] tot = {dataset1,dataset2};
-        final int strandDivision = 1400;
-        
+        //TimeSeriesCollection dataset1 = new TimeSeriesCollection();
+        //TimeSeriesCollection dataset2 = new TimeSeriesCollection();
+        //TimeSeriesCollection[] tot = {dataset1,dataset2};
+        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        //final int strandDivision = 1400;
+
         String[] temp;
 
         while (another.compareTo("y") == 0)
@@ -196,23 +208,24 @@ public class RatingsGraph extends ApplicationFrame
                 {
                     dat.add(new Day(p.getDay().get(y), p.getMonth().get(y), p.getYear().get(y)), p.getRatings().get(y));
                 }
-                int currRating = p.getRatings().get(p.getRatings().size()-1);
-                if(currRating >= strandDivision)
-                {
-                    dataset1.addSeries(dat);
-                }
-                else
-                {
-                    dataset2.addSeries(dat);
-                }
-                
+                //                 int currRating = p.getRatings().get(p.getRatings().size()-1);
+                //                 if(currRating >= strandDivision)
+                //                 {
+                //                     dataset1.addSeries(dat);
+                //                 }
+                //                 else
+                //                 {
+                //                     dataset2.addSeries(dat);
+                //                 }
+                dataset.addSeries(dat);
+
             }
 
             System.out.print("Would you like to enter another member id (y/n)? ");
             another = in.next();
         }
 
-        return tot;
+        return dataset;
     }
 
     /**
@@ -228,7 +241,12 @@ public class RatingsGraph extends ApplicationFrame
         graph1.pack(); 
         RefineryUtilities.centerFrameOnScreen(graph1);
         graph1.setVisible(true);
-        
-        
+
+        //RatingsGraph graph2 = new RatingsGraph("Rating Over Time", "ratings");
+
+        //graph2.pack(); 
+        //RefineryUtilities.centerFrameOnScreen(graph2);
+        //graph2.setVisible(true);
+
     }
 }
