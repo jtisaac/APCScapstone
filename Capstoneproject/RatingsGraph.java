@@ -50,6 +50,28 @@ import org.jfree.date.MonthConstants;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.regex.Pattern;
+import java.util.Arrays;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import java.io.IOException;
+import org.jsoup.HttpStatusException;
+import org.jsoup.Connection;
+import java.util.Scanner;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.regex.Pattern;
+import java.util.GregorianCalendar;
 /** //this WHOLE CLASS is thanks to http://www.jfree.org/ - CUSTOMIZED IT TO MY PURPOSES  - thianks so much to the maker!
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -76,23 +98,33 @@ public class RatingsGraph extends ApplicationFrame
         //graphdata = new DefaultCategoryDataset();
 
         //JFreeChart ratingchart = ChartFactory.createLineChart( chartTitle , "date" , "rating" , makeDataset() , PlotOrientation.VERTICAL, true , true, false);
-        JPanel panel = createPanel(); //new ChartPanel (ratingchart);
-        panel.setPreferredSize( new java.awt.Dimension( 600, 400 ));
-        setContentPane( panel);
+        JPanel panel1 = createPanel1(); //new ChartPanel (ratingchart);
+        panel1.setPreferredSize( new java.awt.Dimension( 600, 400 ));
+        setContentPane( panel1);
+        
+        JPanel panel2 = createPanel2(); //new ChartPanel (ratingchart);
+        panel2.setPreferredSize( new java.awt.Dimension( 600, 400 ));
+        setContentPane( panel2);
 
     }
 
-    public static JPanel createPanel() throws IOException
+    public static JPanel createPanel1() throws IOException
     {
-        JFreeChart chart = createChart(makeDataset());
+        JFreeChart chart = createChart(makeDataset()[0]);
         return new ChartPanel(chart);
     }
 
+    public static JPanel createPanel2() throws IOException
+    {
+        JFreeChart chart = createChart(makeDataset()[1]);
+        return new ChartPanel(chart);
+    }
+    
     private static JFreeChart createChart(XYDataset dataset) {
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "USCF Graphs",
-                "Date",
-                "Value",
+                "USCF Graphs by Joseph Isaac",
+                "Time",
+                "Rating",
                 dataset,
                 true,
                 true,
@@ -120,46 +152,67 @@ public class RatingsGraph extends ApplicationFrame
         return chart;
     }
 
-    public Parser request() throws IOException
-    {
+    //     public Parser request() throws IOException
+    //     {
+    // 
+    //         Scanner in = new Scanner(System.in);
+    // 
+    //         String[] temp;
+    // 
+    //         System.out.print("Please enter the ID of the player that you would like to graph: ");
+    //         temp = in.next().split(",");
+    //         for (int x = 0; x < temp.length; x++)
+    //         {
+    //             WebpageReader wr = new WebpageReader(id);
+    //             String data = wr.main();
+    //             Parser p = new Parser(data);
+    //         }
+    //         return p;
+    //     }
 
-        Scanner in = new Scanner(System.in);
-        System.out.print("Please enter the ID of the player that you would like to graph: ");
-        String id = in.next();
-        WebpageReader wr = new WebpageReader(id);
-        String data = wr.main();
-        Parser p = new Parser(data);
-
-        return p;
-    }
-
-    public static XYDataset makeDataset() throws IOException
+    public static TimeSeriesCollection[] makeDataset() throws IOException
     {
         Scanner in = new Scanner(System.in);
         String another = "y";
-        TimeSeriesCollection dataset = new TimeSeriesCollection();
+        TimeSeriesCollection dataset1 = new TimeSeriesCollection();
+        TimeSeriesCollection dataset2 = new TimeSeriesCollection();
+        TimeSeriesCollection[] tot = {dataset1,dataset2};
+        final int strandDivision = 1400;
+        
+        String[] temp;
 
         while (another.compareTo("y") == 0)
         {
             System.out.print("Please enter the ID of the player that you would like to graph: ");
-            String id = in.next();
-            WebpageReader wr = new WebpageReader(id);
-            String data = wr.main();
-            Parser p = new Parser(data);
-            p.main();
-            TimeSeries dat = new TimeSeries(wr.fetchName());
-            for (int x = 0; x < p.getYear().size(); x++)
+            temp = in.next().split(",");
+            for (int x = 0; x < temp.length; x++)
             {
-                dat.add(new Day(p.getDay().get(x), p.getMonth().get(x), p.getYear().get(x)), p.getRatings().get(x));
+                WebpageReader wr = new WebpageReader(temp[x]);
+                String data = wr.main();
+                Parser p = new Parser(data);
+                p.main();
+                TimeSeries dat = new TimeSeries(wr.fetchName());
+                for (int y = 0; y < p.getYear().size(); y++)
+                {
+                    dat.add(new Day(p.getDay().get(y), p.getMonth().get(y), p.getYear().get(y)), p.getRatings().get(y));
+                }
+                int currRating = p.getRatings().get(p.getRatings().size()-1);
+                if(currRating >= strandDivision)
+                {
+                    dataset1.addSeries(dat);
+                }
+                else
+                {
+                    dataset2.addSeries(dat);
+                }
+                
             }
 
-            dataset.addSeries(dat);
-
-            System.out.print("Would you line to enter another member id (y/n)? ");
+            System.out.print("Would you like to enter another member id (y/n)? ");
             another = in.next();
         }
 
-        return dataset;
+        return tot;
     }
 
     /**
@@ -170,11 +223,12 @@ public class RatingsGraph extends ApplicationFrame
      */
     public static void main( String[] args ) throws IOException
     {
-        RatingsGraph graph = new RatingsGraph("Rating Over Time", "ratings");
+        RatingsGraph graph1 = new RatingsGraph("Rating Over Time", "ratings");
 
-        graph.pack(); 
-        RefineryUtilities.centerFrameOnScreen(graph);
-        graph.setVisible(true);
-        //makeDataset();
+        graph1.pack(); 
+        RefineryUtilities.centerFrameOnScreen(graph1);
+        graph1.setVisible(true);
+        
+        
     }
 }
