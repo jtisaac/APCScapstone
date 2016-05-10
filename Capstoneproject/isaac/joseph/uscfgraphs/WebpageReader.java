@@ -1,20 +1,12 @@
 package isaac.joseph.uscfgraphs; 
 
-import org.jsoup.Jsoup;
+import org.jsoup.*;
 import org.jsoup.nodes.Document;
-import java.io.IOException;
-import org.jsoup.HttpStatusException;
-import org.jsoup.Connection;
 import java.util.Scanner;
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
+import java.io.*;
 import java.util.regex.Pattern;
-import java.net.Socket;
-import java.net.InetSocketAddress;
+import java.net.*;
+
 /**
  * This class reads data from a webpage, specifically USchess.org, then writes this information to a file.
  * IMPORTANT  -use reader class from unit 8. HELPFUL

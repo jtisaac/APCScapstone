@@ -1,26 +1,13 @@
 package isaac.joseph.uscfgraphs;
+
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.regex.Pattern;
 import java.util.Arrays;
+import org.jsoup.Jsoup.*;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import java.io.IOException;
-import org.jsoup.HttpStatusException;
-import org.jsoup.Connection;
-import java.util.Scanner;
-import java.io.File;
-import java.io.PrintWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.util.regex.Pattern;
-import java.util.GregorianCalendar;
 /**
  * This class reads data from the member's file and creates arrays based on this data.
  * 
@@ -33,7 +20,7 @@ public class Parser
     private static String memberID;
     private ArrayList<String> names;
     private ArrayList<Integer> ratings;
-    private ArrayList<GregorianCalendar> date;
+    
     private ArrayList<String> data;
     private ArrayList<String> memberStr;
     private String memberdata;
@@ -50,7 +37,7 @@ public class Parser
 
         names = new ArrayList<String>();
         ratings = new ArrayList<Integer>();
-        date = new ArrayList<GregorianCalendar>();
+        
 
         year = new ArrayList<Integer>();
         month = new ArrayList<Integer>();
@@ -72,7 +59,6 @@ public class Parser
         int[] tempNum = new int[3];
         String[] tempString = new String[3];
         ArrayList<String> cal = new ArrayList<String>();
-        //GregorianCalendar tempDate = new GregorianCalendar();
         boolean same = false;
         int count = 0;
         boolean yes = false;
@@ -127,13 +113,7 @@ public class Parser
                     //System.out.print(year + " " + month + " " + day + " ");
                     count ++;
 
-                    //tempDate = new GregorianCalendar(year,month,day);
-
                     cal.add(memberStr.get(x));
-                    //date.add(tempDate);
-                    //System.out.println(tempDate.toString());
-                    //System.out.println(memberStr.get(x));
-                    //System.out.print(count + "XX ");
                 }
             }
 
@@ -192,18 +172,6 @@ public class Parser
     {
         return ratings;
     }
-
-    //     /**
-    //      * An example of a method - replace this comment with your own
-    //      * 
-    //      * @param  y   a sample parameter for a method
-    //      * @return     the sum of x and y 
-    //      */
-    //     public ArrayList<GregorianCalendar> getDates() throws IOException
-    //     {
-    //         return date;
-    //     }
-
     public ArrayList<Integer> getYear() throws IOException
     {
         return year;
