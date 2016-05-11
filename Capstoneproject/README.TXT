@@ -15,7 +15,9 @@ PRIOR KNOWLEDGE: USChess.org is the data hub for chess in the USA. all chessplay
                  *My program may not correctly use data from members who have tournaments before 2002 because they may have tournaments entered out of order.
                  *
 HOW TO START THIS PROJECT: Open Bluej. Go to CapstoneProject and click on the "CapstoneProject" Bluej file. 
-                           (There are 2 examples from jfreecharts (available only to premium members of David Gilbert's jfree doc site for jfreecharts @ http://www.object-refinery.com/jfreechart/premium/index.html) that I did copy the format of for RatingsGraph. This is in the capstone_examples folder. Right now, they don't seem to run, but that's where I got some inspiration. Any other files there,
+                           (There are 2 examples from jfreecharts (available only to premium members of David Gilbert's jfree doc site for jfreecharts @ http://www.object-refinery.com/jfreechart/premium/index.html) that I did copy the format of for RatingsGraph. This is in the capstone_examples folder. Also, 
+                           Pie chart: http://www.vogella.com/tutorials/JFreeChart/article.html#piechart and
+                           Line chart: http://www.tutorialspoint.com/jfreechart/jfreechart_line_chart.htm were helpful. That's where I got some inspiration. Any other files there,
                            if you see it in the commits, are NOT part of the project. Some of them may not run, and they may represent previous failed attemps at starting the capstone OR examples which I do not eventually use).
                            [Do this before starting the program for the first time: MAKE SURE in Bluej Preferences -> Libraries to add the JAR files located in the jarfiles folder. These are jsoup, jfreecharts, and jcommon
                            These are required to run the program.]

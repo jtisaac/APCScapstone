@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=title
+comment0.target=TimeSeriesDemo8(java.lang.String)
+comment0.text=\n\ A\ demonstration\ application\ showing\ how\ to\ create\ a\ simple\ time\ series\n\ chart.\n\n\ @param\ title\ \ the\ frame\ title.\n
+comment1.params=
+comment1.target=org.jfree.data.xy.XYDataset\ createDataset()
+comment1.text=\n\ Creates\ a\ sample\ dataset.\n\n\ @return\ a\ sample\ dataset.\n
+comment2.params=
+comment2.target=org.jfree.data.time.TimeSeries\ createEURTimeSeries()
+comment2.text=\n\ Returns\ a\ time\ series\ of\ the\ daily\ EUR/GBP\ exchange\ rates\ in\ 2001\ (to\n\ date),\ for\ use\ in\ the\ JFreeChart\ demonstration\ application.\n\ <P>\n\ You\ wouldn't\ normally\ create\ a\ time\ series\ in\ this\ way.\ \ Typically,\n\ values\ would\ be\ read\ from\ a\ database.\n\n\ @return\ A\ time\ series.\n
+comment3.params=dataset
+comment3.target=org.jfree.chart.JFreeChart\ createChart(org.jfree.data.xy.XYDataset)
+comment3.text=\n\ Creates\ a\ chart.\n\n\ @param\ dataset\ \ the\ dataset.\n\n\ @return\ a\ chart.\n
+comment4.params=
+comment4.target=javax.swing.JPanel\ createDemoPanel()
+comment4.text=\n\ Creates\ a\ panel\ for\ the\ demo\ (used\ by\ SuperDemo.java).\n\n\ @return\ A\ panel.\n
+comment5.params=args
+comment5.target=void\ main(java.lang.String[])
+comment5.text=\n\ Starting\ point\ for\ the\ demonstration\ application.\n\n\ @param\ args\ \ ignored.\n
+numComments=6

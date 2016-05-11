@@ -7,7 +7,7 @@
  *
  */
 
-//package demo;
+ 
 
 import java.awt.BasicStroke;
 import java.text.DecimalFormat;
@@ -33,7 +33,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.date.MonthConstants;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
-import org.jfree.chart.plot.XYPlot;
+
 /**
  * A time series chart.
  */
@@ -344,11 +344,11 @@ public class TimeSeriesDemo8 extends ApplicationFrame {
         plot.setRangeAxis(1, yAxis2);
         List axisIndices = Arrays.asList(new Integer[] {new Integer(0),
                 new Integer(1)});
-        plot.mapDatasetToRangeAxes(0, axisIndices);
+        //plot.mapDatasetToRangeAxes(0, axisIndices);
 
         XYLineAndShapeRenderer renderer
                 = (XYLineAndShapeRenderer) plot.getRenderer();
-        renderer.setAutoPopulateSeriesStroke(false);
+        //renderer.setAutoPopulateSeriesStroke(false);
         renderer.setBaseStroke(new BasicStroke(1.5f,
                 BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         renderer.setDrawSeriesLineAsPath(true);
@@ -356,7 +356,7 @@ public class TimeSeriesDemo8 extends ApplicationFrame {
                 StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT,
                 new SimpleDateFormat("d-MMM-yyyy"), new DecimalFormat("0.00"));
         renderer.setBaseToolTipGenerator(g);
-        ChartUtilities.applyCurrentTheme(chart);
+        //ChartUtilities.applyCurrentTheme(chart);
         return chart;
     }
 
