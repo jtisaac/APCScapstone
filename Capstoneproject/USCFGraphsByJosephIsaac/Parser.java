@@ -50,18 +50,16 @@ public class Parser
      */
     public void parse() throws FileNotFoundException, IOException
     {
-        int[] tempNum = new int[3];
-        String[] tempString = new String[3];
-        ArrayList<String> cal = new ArrayList<String>();
-        boolean same = false;
-        int count = 0;
-        boolean yes = false;
-        String tempstr = "";
-        int match = 0;
+        int[] tempNum = new int[3]; // where the year, month, and day will initially be held as integers (temp)
+        String[] tempString = new String[3]; // where the year, month, and day will initially be held (temp)
+        ArrayList<String> cal = new ArrayList<String>(); // the list of dates preserved so that the dates don't repeat
+        boolean same = false; //if the dates are the same
+        int count = 0; //the # of dates
+        boolean yes = false; // a boolean variable where yes = true allows it to become a date
         
-        for (int x = memberStr.size() - 1; x >= 0; x--)
+        for (int x = memberStr.size() - 1; x >= 0; x--) //going from the bottom of the file so that the earliest dates are read first
         {
-            for (String s : cal) 
+            for (String s : cal) // makes sure that no dates repeat
             { 
                 if (memberStr.get(x).compareTo(s) == 0)
                 {
@@ -73,10 +71,9 @@ public class Parser
                 }
             }
             yes = true;
-            match = 0;
-            if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 && same == false)  //http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen 
+            if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 && same == false)  //http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen <--this line is the regex for finding a date
             {
-                for (int a = x; a < memberStr.size(); a++)
+                for (int a = x; a < memberStr.size(); a++) // checking if it is an online (ONL) rating. if it is , it does not inclue that rating
                 {
                     if (memberStr.get(a).contains("=>"))
                     {
@@ -87,14 +84,14 @@ public class Parser
                         a = memberStr.size();
                     }
                 }
-                if (yes == true)
+                if (yes == true) //if it truly is a date that we must add
                 {
                     tempString = memberStr.get(x).split("-",3);
-                    for (int y = 0; y < tempString.length; y ++)
+                    for (int y = 0; y < tempString.length; y ++) // adding the date to tempNum
                     {
                         tempNum[y] = Integer.parseInt(tempString[y]); //http://imagejdocu.tudor.lu/doku.php?id=howto:java:how_to_convert_data_type_x_into_type_y_in_java
                     }
-                    year.add(tempNum[0]);
+                    year.add(tempNum[0]); //adding to the arrays
                     month.add(tempNum[1]);
                     day.add(tempNum[2]);
                     cal.add(memberStr.get(x));
@@ -103,19 +100,19 @@ public class Parser
             }
 
         }
-        System.out.println("This player has played in " + count + " tournaments");
+        System.out.println("This player has played in " + count + " tournaments"); //trace + check
         System.out.println(memberStr);
         int first = 0;
         int ratingcount = 0;
         System.out.println(year);
         System.out.println(year.size());
-        for (int z = 0; z < year.size(); z++)
+        for (int z = 0; z < year.size(); z++) //going through the size of dates, starting at 0
         {
-            for (int y = memberStr.size() - 1; y >= 0; y--)
+            for (int y = memberStr.size() - 1; y >= 0; y--) //going through the data
             {
-                if (cal.get(z).compareTo(memberStr.get(y)) == 0)
+                if (cal.get(z).compareTo(memberStr.get(y)) == 0) // if they are ==
                 {
-                    for (int k = y; k < memberStr.size(); k ++)
+                    for (int k = y; k < memberStr.size(); k ++) // now they shall look for the closest => sign - that will be the attained rating
                     {
                         if (first == 0 && memberStr.get(k-1).contains("=>") && memberStr.get(k-3).compareTo(" ") != 0 && !(memberStr.get(k-3).contains("ONL:")) && !(memberStr.get(k-2).contains("ONL:")))
                         {

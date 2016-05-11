@@ -33,7 +33,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.date.MonthConstants;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
-
+import org.jfree.chart.plot.XYPlot;
 /**
  * A time series chart.
  */
