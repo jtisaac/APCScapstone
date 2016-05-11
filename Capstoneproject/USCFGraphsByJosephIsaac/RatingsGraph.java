@@ -72,7 +72,7 @@ public class RatingsGraph extends ApplicationFrame
         String[] temp;
         while (another.compareTo("y") == 0)
         {
-            System.out.print("Please enter the ID of the player that you would like to graph: ");
+            System.out.print("Please enter a player's ID or a key that you would like to graph: ");
             temp = in.next().split(",");
             for (int x = 0; x < temp.length; x++)
             {
