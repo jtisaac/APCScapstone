@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=applicationTitle\ chartTitle
+comment0.target=RatingsGraph(java.lang.String,\ java.lang.String)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ RatingsGraph\n\ \n\ @param\ applicationTitle\ the\ title\ of\ the\ application\ that\ you\ want\ to\ run\n\ @param\ chartTitle\ the\ title\ of\ the\ chart\n
+comment1.params=
+comment1.target=javax.swing.JPanel\ createPanel()
+comment1.text=\n\ creates\ a\ JPanel\ based\ on\ createChart's\ dataset\n\ \n\ @return\ \ \ \ \ a\ JPanel\ \n
+comment2.params=dataset
+comment2.target=org.jfree.chart.JFreeChart\ createChart(org.jfree.data.xy.XYDataset)
+comment2.text=\n\ creates\ a\ JFreeChart\ based\ on\ the\ dataset\n\ \n\ @param\ \ dataset\ an\ XYDataset\ (ratings\ and\ time)\n\ @return\ \ \ \ \ JFreeChart\n
+comment3.params=
+comment3.target=org.jfree.data.time.TimeSeriesCollection\ makeDataset()
+comment3.text=\n\ creates\ a\ TimeSeriesCollection\ using\ Parser\ and\ WebpageReader\n\ \n\ @return\ \ \ \ \ dataset\ a\ TimeSeriesCollection\n
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment4.text=\n\ Runs\ the\ whole\ program\ \n
+numComments=5

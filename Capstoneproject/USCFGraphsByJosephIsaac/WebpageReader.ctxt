@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=ID
+comment0.target=WebpageReader(java.lang.String)
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ WebpageReader\n\ \n\ @param\ ID\ the\ id\ of\ the\ member\ (should\ be\ just\ that,\ make\ a\ substring\ just\ in\ case\ extra\ characters\ are\ added\ in\ the\ back,\ but\ shouldn't\ be\ the\ case)\n
+comment1.params=
+comment1.target=java.lang.String\ read()
+comment1.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ not\ as\ a\ parameter\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ @return\ the\ member\ data\ (the\ whole\ webpage\ for\ that\ member)\n
+comment2.params=
+comment2.target=void\ write()
+comment2.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\ THIS\ METHOD\ IS\ NOT\ EXPLICITLY\ USED,HOWEVER\ IT\ IS\ AN\ EXTENSION\ FOR\ POSSIBLY\ MORE\n
+comment3.params=
+comment3.target=java.lang.String\ getMemberID()
+comment3.text=\n\ Accessor\ method\ that\ returns\ the\ member's\ id.\n\ @return\ the\ member's\ id\n\ \n
+comment4.params=
+comment4.target=java.lang.String\ fetchName()
+comment4.text=\n\ Accessor\ method\ that\ returns\ the\ member's\ data\ string.\n\ \n\ @return\ the\ name\ of\ the\ member\n
+comment5.params=
+comment5.target=java.lang.String\ main()
+comment5.text=\n\ This\ method\ Accepts\ a\ USCF\ member\ id\ and\ prints\ the\ data\ page\ for\ that\ member.\n\ \n\ runs\ to\ get\ webpage\n\ @return\ the\ webpage\ as\ a\ string\n
+numComments=6
