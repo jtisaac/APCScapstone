@@ -26,7 +26,7 @@ public class Parser
     private ArrayList<Integer> day; // the day of tournament
     /**
      * Constructor for objects of class CapstoneFileReader
-     * @param the memberdata string, the webpage fo that member
+     * @param the memberdata string, the webpage for that member
      */
     public Parser(String memberdata)
     {
@@ -73,28 +73,29 @@ public class Parser
             yes = true;
             if ( (Pattern.matches("[1-2][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]",memberStr.get(x))) && memberStr.get(x).compareTo("2003-10-16") != 0 && same == false)  //http://stackoverflow.com/questions/4475619/java-regular-expression-with-hyphen <--this line is the regex for finding a date
             {
-                for (int a = x; a < memberStr.size(); a++) // checking if it is an online (ONL) rating. if it is , it does not inclue that rating
+                for (int a = x; a < memberStr.size(); a++) // checking if it is an online (ONL) rating. if it is , it does not include the date for that rating
                 {
-                    if (memberStr.get(a).contains("=>"))
+                    if (memberStr.get(a).contains("=>")) // The => is the pattern where the rating after it is the rating for that date
                     {
                         if (memberStr.get(a-3).contains(" ") || memberStr.get(a-1).contains("ONL:"))
                         {
                             yes = false;
                         }
-                        a = memberStr.size();
+                        a = memberStr.size(); // ending the for loop
                     }
                 }
-                if (yes == true) //if it truly is a date that we must add
+                if (yes == true) //if it truly is a date (not duplicated) that we must add
                 {
                     tempString = memberStr.get(x).split("-",3);
                     for (int y = 0; y < tempString.length; y ++) // adding the date to tempNum
                     {
                         tempNum[y] = Integer.parseInt(tempString[y]); //http://imagejdocu.tudor.lu/doku.php?id=howto:java:how_to_convert_data_type_x_into_type_y_in_java
                     }
-                    year.add(tempNum[0]); //adding to the arrays
-                    month.add(tempNum[1]);
-                    day.add(tempNum[2]);
-                    cal.add(memberStr.get(x));
+                    //adding to the arrays (the TimeSeries class actually does not accept Dates, but it accepts the year, month and day each seperately. So, I had to make 3 different arraylists for each
+                    year.add(tempNum[0]); // adding to the year array
+                    month.add(tempNum[1]); // adding to the month array
+                    day.add(tempNum[2]); // adding to the day array
+                    cal.add(memberStr.get(x)); // cal is only used as a verification arraylist that is used in the first if statement at the top of this method
                     count ++;
                 }
             }
@@ -106,6 +107,7 @@ public class Parser
         int ratingcount = 0;
         System.out.println(year);
         System.out.println(year.size());
+        // now for the ratings
         for (int z = 0; z < year.size(); z++) //going through the size of dates, starting at 0
         {
             for (int y = memberStr.size() - 1; y >= 0; y--) //going through the data

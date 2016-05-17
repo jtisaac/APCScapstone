@@ -64,7 +64,7 @@ public class WebpageReader
     }    
 
     /**
-     * This method Accepts a USCF member id and prints the data page for that member. THIS METHOD IS NOT EXPLICITLY USED,HOWEVER IT IS AN EXTENSION FOR POSSIBLY MORE
+     * This method Accepts a USCF member id and prints the data page for that member. THIS METHOD IS NOT EXPLICITLY USED, HOWEVER IT IS AN EXTENSION FOR POSSIBLY MORE
      */
     public void write() throws IOException
     {

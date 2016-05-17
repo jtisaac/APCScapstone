@@ -1,6 +1,6 @@
 package USCFGraphsByJosephIsaac;
 
-import org.jfree.chart.*;// All this code is from http://www.jfree.org/  - thianks so much to the maker!
+import org.jfree.chart.*;
 import org.jfree.ui.*;
 import org.jfree.data.*;
 import org.jfree.data.time.*;
@@ -16,7 +16,7 @@ import java.util.List;
 import org.jsoup.*;
 import java.lang.Throwable.*;
 
-/** //this WHOLE CLASS is thanks to http://www.jfree.org/ - CUSTOMIZED IT TO MY PURPOSES  - thianks so much to the maker!
+/** //the design of this class is thanks to http://www.jfree.org/
 
  * This class makes a graph displaying player(s)' ratings in relation to time constructed with the Parser and WebpageReader class 
  * 
@@ -36,7 +36,7 @@ public class RatingsGraph extends ApplicationFrame
         super(applicationTitle);
         JPanel panel1 = createPanel();
         panel1.setPreferredSize( new java.awt.Dimension( 1400, 1000 ));
-        setContentPane( panel1);
+        setContentPane( panel1); // made from a chart in the createPanel method
     }
     /**
      * creates a JPanel based on createChart's dataset
@@ -56,7 +56,7 @@ public class RatingsGraph extends ApplicationFrame
      */
     private static JFreeChart createChart(XYDataset dataset) 
     {
-        JFreeChart chart = ChartFactory.createTimeSeriesChart("USCF Graphs by Joseph Isaac","Time","Rating",dataset,true,true,false);
+        JFreeChart chart = ChartFactory.createTimeSeriesChart("USCF Graphs by Joseph Isaac","Time","Rating",dataset,true,true,false); // the second boolean parameter is the tooltip function, which I enabled. The dataset parameter is made in the makeDataset function
         return chart;
     }
     /**
@@ -69,12 +69,12 @@ public class RatingsGraph extends ApplicationFrame
         Scanner in = new Scanner(System.in);
         String another = "y";
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        String[] temp;
+        String[] temp; // the temp array is needed because the split method only returns an array
         while (another.compareTo("y") == 0)
         {
             System.out.print("Please enter a player's ID or a key that you would like to graph: ");
             temp = in.next().split(",");
-            for (int x = 0; x < temp.length; x++)
+            for (int x = 0; x < temp.length; x++) // allows for multiple id's to be accepted at once
             {
                 try
                 {
@@ -82,10 +82,10 @@ public class RatingsGraph extends ApplicationFrame
                     String data = wr.main();
                     Parser p = new Parser(data);
                     p.main();
-                    TimeSeries dat = new TimeSeries(wr.fetchName());
+                    TimeSeries dat = new TimeSeries(wr.fetchName()); // creates a new TimeSeries instance for every ID that is entered
                     for (int y = 0; y < p.getYear().size(); y++)
                     {
-                        dat.add(new Day(p.getDay().get(y), p.getMonth().get(y), p.getYear().get(y)), p.getRatings().get(y));
+                        dat.add(new Day(p.getDay().get(y), p.getMonth().get(y), p.getYear().get(y)), p.getRatings().get(y)); // going through every date (index x of arraylists year, month, and day)
                     }
                     dataset.addSeries(dat);
                 }

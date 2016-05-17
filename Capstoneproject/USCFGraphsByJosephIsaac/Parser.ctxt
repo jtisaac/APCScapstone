@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.params=memberdata
 comment0.target=Parser(java.lang.String)
-comment0.text=\n\ Constructor\ for\ objects\ of\ class\ CapstoneFileReader\n\ @param\ the\ memberdata\ string,\ the\ webpage\ fo\ that\ member\n
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ CapstoneFileReader\n\ @param\ the\ memberdata\ string,\ the\ webpage\ for\ that\ member\n
 comment1.params=
 comment1.target=void\ parse()
 comment1.text=\n\ parses\ the\ webpage\ for\ the\ rating,\ day,\ month\ year,\ of\ each\ tournament.\ This\ is\ where\ the\ bulk\ of\ the\ program\ functions.\ Sadly,\ the\ US\ chess\ site\ did\ not\ have\ an\ api\ to\ run\ off\ of,\ so\ I\ had\ to\ create\ my\ own.\n
